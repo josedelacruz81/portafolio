@@ -6,7 +6,7 @@ import useDarkMode from '../hooks/useDarkMode';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [colorTheme, setTheme] = useDarkMode();
+  const [theme, toggleTheme] = useDarkMode();
 
   // Detectar el scroll para cambiar el estilo del Navbar (Efecto Glassmorphism)
   useEffect(() => {
@@ -60,21 +60,21 @@ export default function Navbar() {
           
           {/* Botón de Modo Oscuro (Escritorio) */}
           <button
-            onClick={() => setTheme(colorTheme)}
+            onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:text-cyan-500 transition-colors"
             aria-label="Alternar modo oscuro"
           >
-            {colorTheme === 'light' ? <FiSun size={20} /> : <FiMoon size={20} />}
+            {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
           </button>
         </div>
 
         {/* Botón de Menú Móvil */}
         <div className="md:hidden flex items-center space-x-4">
           <button
-            onClick={() => setTheme(colorTheme)}
+            onClick={toggleTheme}
             className="p-2 text-gray-600 dark:text-gray-300"
           >
-            {colorTheme === 'light' ? <FiSun size={20} /> : <FiMoon size={20} />}
+            {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
           </button>
           
           <button

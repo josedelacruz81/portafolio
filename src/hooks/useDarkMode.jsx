@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react';
 
 export default function useDarkMode() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-  const colorTheme = theme === 'dark' ? 'light' : 'dark';
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme || 'light';
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove(colorTheme);
+    root.classList.remove('light', 'dark');
     root.classList.add(theme);
     localStorage.setItem('theme', theme);
-  }, [theme, colorTheme]);
+  }, [theme]);
 
-  return [colorTheme, setTheme];
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+  };
+
+  return [theme, toggleTheme];
 }

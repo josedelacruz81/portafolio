@@ -27,7 +27,7 @@ export default function Projects() {
       description: 'Arquitectura web y diseño de interfaz responsiva para centro médico en Shushufindi. Incluye navegación dinámica y páginas de especialidades médicas.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'Diseño UI'],
       image: [imgsionamed1, imgsionamed2],
-      link: 'https://cmisionamed.onrender.com/index.html',
+      link: 'https://cmisionamed.onrender.com/',
       repo: 'https://github.com/josedelacruz81/CMISIONAMED.git'
     },
     {

@@ -10,8 +10,8 @@ export default function Footer() {
         {/* Marca personal y ubicación */}
         <div className="text-center md:text-left">
           <a href="#inicio" className="text-xl font-bold font-sans tracking-tighter block mb-1">
-            <span className="text-gray-900 dark:text-white">&lt;Alan</span>
-            <span className="text-cyan-500">Pacheco /&gt;</span>
+            <span className="text-gray-900 dark:text-white">&lt;Jose</span>
+            <span className="text-cyan-500">De La Cruz /&gt;</span>
           </a>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Diseñado y desarrollado con pasión en Shushufindi, Ecuador 🇪🇨
@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-end gap-3">
           <div className="flex space-x-4">
             <a 
-              href="https://github.com/tu-usuario" 
+              href="https://github.com/josedelacruz81" 
               target="_blank" 
               rel="noreferrer"
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -31,7 +31,7 @@ export default function Footer() {
               <FiGithub size={20} />
             </a>
             <a 
-              href="https://linkedin.com/in/tu-usuario" 
+              href="https://www.linkedin.com/in/jose-de-la-cruz-411149324" 
               target="_blank" 
               rel="noreferrer"
               className="text-gray-400 hover:text-cyan-500 transition-colors"
@@ -40,7 +40,7 @@ export default function Footer() {
               <FiLinkedin size={20} />
             </a>
             <a 
-              href="mailto:tu-correo@email.com" 
+              href="mailto:josedelacruz81@gmail.com" 
               className="text-gray-400 hover:text-purple-500 transition-colors"
               aria-label="Correo"
             >
@@ -48,7 +48,7 @@ export default function Footer() {
             </a>
           </div>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {currentYear} Jose De La Cruz. Todos los derechos reservados.
+            © {currentYear} Todos los derechos reservados.
           </p>
         </div>
 
