@@ -44,7 +44,7 @@ export default function Projects() {
       id: 3,
       title: 'Ofiempleo',
       category: 'Desarrollo Web',
-      description: 'Estructura web y metodología Design Thinking (Empathy Mapping) para escuela de emprendimiento femenino en Cascales.',
+      description: 'Plataforma web para la búsqueda de empleo, que permite a los usuarios explorar ofertas laborales, filtrar por categorías y postularse directamente desde la interfaz. Incluye un panel de administración para gestionar las vacantes publicadas.',
       tech: ['React', 'UI/UX', 'Metodologías Ágiles'],
       image: [imgOfiempleo1],
       link: 'https://ofiempleo.vercel.app/',
