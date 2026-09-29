@@ -16,7 +16,7 @@ export default function Projects() {
   const [filter, setFilter] = useState('Todos');
 
   // Categorías para los botones de filtro
-  const categories = ['Todos', 'Desarrollo Web', 'Diseño & UI', 'Gestión IT & Social', 'Movil'];
+  const categories = ['Todos', 'Desarrollo Web', 'Movil'];
 
   // Aquí están precargados tus proyectos reales
   const projects = [
