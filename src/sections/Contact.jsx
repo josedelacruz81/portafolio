@@ -6,25 +6,43 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const recipientEmail = 'josepastordelacruz81@gmail.com';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Aquí integrarías la lógica de Firebase Firestore o EmailJS
-    // Ejemplo simulado:
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Nuevo mensaje de ${formData.name}`,
+          _template: 'table',
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error(result.message || 'FormSubmit no pudo procesar el mensaje.');
+      }
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Limpiar formulario
-      
-      // Ocultar el mensaje de éxito después de 3 segundos
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 1500);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error al enviar el formulario de contacto:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -68,8 +86,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                    <a href="mailto:josepastordelacruz81@gmail.com" className="text-gray-900 dark:text-white font-medium hover:text-cyan-500 transition-colors">
-                      josepastordelacruz81@gmail.com
+                    <a href={`mailto:${recipientEmail}`} className="text-gray-900 dark:text-white font-medium hover:text-cyan-500 transition-colors">
+                      {recipientEmail}
                     </a>
                   </div>
                 </div>
@@ -169,14 +187,20 @@ export default function Contact() {
                 )}
               </button>
 
-              {/* Mensaje de Éxito */}
-              {submitStatus === 'success' && (
+              {submitStatus && (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-4 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-xl text-center font-medium border border-green-200 dark:border-green-800"
+                  role={submitStatus === 'error' ? 'alert' : 'status'}
+                  className={`mt-4 p-4 rounded-xl text-center font-medium border ${
+                    submitStatus === 'success'
+                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800'
+                      : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800'
+                  }`}
                 >
-                  ¡Mensaje enviado con éxito! Te responderé pronto.
+                  {submitStatus === 'success'
+                    ? '¡Mensaje enviado con éxito! Te responderé pronto.'
+                    : 'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme directamente por correo.'}
                 </motion.div>
               )}
             </form>
